@@ -108,7 +108,7 @@ public abstract class AbstractVerifier<T, M extends Map<String, Object>, L exten
 	// <TableName, <METHOD, allowRoles>>
 	// <User, <GET, [OWNER, ADMIN]>>
 	@NotNull
-	public static Map<String, Map<RequestMethod, String[]>> SYSTEM_ACCESS_MAP;
+	public static Map<String, Map<RequestMethod, String[]>> SYSTEM_ACCESS_MAP; // TODO 改名为 CONFIG_ACCESS_MAP ？
 	@NotNull
 	public static Map<String, Map<RequestMethod, String[]>> ACCESS_MAP;
 	@NotNull
@@ -317,6 +317,10 @@ public abstract class AbstractVerifier<T, M extends Map<String, Object>, L exten
 			}
 			if (role == null) {
 				role = config == null ? UNKNOWN : config.getRole();
+			}
+
+			if (Log.DEBUG == false && SYSTEM_ACCESS_MAP.get(table) != null) {
+				throw new IllegalAccessException(table + " 不允许 " + role + " 用户的 " + method.name() + " 请求！");
 			}
 
 			Map<RequestMethod, String[]> map = ACCESS_MAP.get(table);
