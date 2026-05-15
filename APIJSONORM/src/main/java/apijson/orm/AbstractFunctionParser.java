@@ -33,7 +33,7 @@ public abstract class AbstractFunctionParser<T, M extends Map<String, Object>, L
     public static boolean ENABLE_REMOTE_FUNCTION = true;
     /**开启支持远程函数中的 JavaScript 脚本形式
      */
-    public static boolean ENABLE_SCRIPT_FUNCTION = true;
+    public static boolean ENABLE_SCRIPT_FUNCTION = false;
 
 	// <methodName, JSONMap>
 	// <isContain, <arguments:"array,key", tag:null, methods:null>>
